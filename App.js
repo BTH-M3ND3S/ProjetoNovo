@@ -7,7 +7,7 @@ export default function App() {
   return (
     <AuthProvider>
       <StatusBar style="light" />
-      <Rotas />
+      <Rotas/>
     </AuthProvider>
   );
 }

@@ -125,7 +125,7 @@ export default function Busca() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.searchBox}>
+            {/* <View style={styles.searchBox}>
                 <TextInput
                     style={styles.search}
                     placeholder="Buscar usuarios"
@@ -133,7 +133,7 @@ export default function Busca() {
                     TextInput={busca}
                     onChangeText={(digitado) => setBusca(digitado)}
                 />
-            </View>
+            </View> */}
 
 
             {edicao == false ?
@@ -142,15 +142,17 @@ export default function Busca() {
                     data={clientes}
                     keyExtractor={(item) => item.clientId}
                     renderItem={({ item }) => (
+                        <View style={styles.container2}>
                         <Text style={styles.text}>
                             {item.clientName}
-                            <TouchableOpacity style={styles.btnEdit} onPress={() => { setEdicao(true); getCliente(item.clientId) }}>
-                                <Text style={styles.btnLoginText}>Editar</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.btnDelete} onPress={() => showAlert(item.clientId, item.clientName)}>
-                                <Text style={styles.btnLoginText}>Excluir</Text>
-                            </TouchableOpacity>
                         </Text>
+                        <TouchableOpacity style={styles.btnEdit} onPress={() => { setEdicao(true); getCliente(item.clientId) }}>
+                        <Text style={styles.btnLoginText}>Editar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnDelete} onPress={() => showAlert(item.clientId, item.clientName)}>
+                        <Text style={styles.btnLoginText}>Excluir</Text>
+                    </TouchableOpacity>
+                    </View>
                     )}
                 />
                 :
@@ -191,12 +193,21 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#191919",
     },
+    container2: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        marginTop: 50,
+        alignItems: "center",
+        justifyContent: "center"
+    },
     text: {
         padding: 10,
+        paddingRight: 150,
         fontSize: 18,
         fontWeight: 'bold',
         color: 'white',
-        borderBottomWidth: 1,
+        borderBottomWidth: 2,
         borderBottomColor: '#ecf0f1',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -219,21 +230,18 @@ const styles = StyleSheet.create({
     },
     btnEdit: {
         backgroundColor: '#27ae60',
-        paddingVertical: 5,
-        paddingHorizontal: 10,
         borderRadius: 5,
+        padding: 10
     },
     btnDelete: {
         backgroundColor: '#e74c3c',
-        paddingVertical: 5,
-        paddingHorizontal: 10,
         borderRadius: 5,
+        padding: 10,
+        marginLeft: 10
     },
     btnLoginText: {
         color: '#ecf0f1',
         fontSize: 16,
-        fontWeight: 'bold',
-        textAlign: 'center',
     },
     editar: {
         width: 300,
